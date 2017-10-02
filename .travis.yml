@@ -1,17 +1,14 @@
 sudo: false
 language: cpp
-env:
-  - COMPILER=g++
-  - COMPILER=clang++
 
 compiler:
   - g++
   - clang++
 
 install:
-  - $COMPILER --version
+  - c++ --version
 
 script:
   - ls
-  - cd advanced-programming/lectures/01_intro/
+  - cd lectures/01_intro/
   - make
