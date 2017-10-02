@@ -1,4 +1,5 @@
-SRC = hello.cc vars_pointers_refs.cc
+#SRC = hello.cc vars_pointers_refs.cc vars.cc
+SRC = $(wildcard *.cc)
 CXX = c++
 CXXFLAGS = -Wall -Wextra -g -std=c++11
 EXE = $(SRC:.cc=.x)
