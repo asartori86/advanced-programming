@@ -5,10 +5,5 @@ compiler:
   - g++
   - clang++
 
-install:
-  - c++ --version
-
 script:
-  - ls
-  - cd lectures/01_intro/
   - make CXX=$CXX
