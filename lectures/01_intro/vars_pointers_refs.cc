@@ -1,9 +1,6 @@
 #include <iostream>
 
-
-
 int main() {
-  std::cerr << "ciao\n";
   double d = 9.9;
   double &ref = d;
   double *ptr = &d;
