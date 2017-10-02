@@ -1,4 +1,6 @@
-# Advanced Programming [webpage](http://www.math.sissa.it/course/phd-course-master-course/advanced-programming)
+# Advanced Programming [![Build Status](https://travis-ci.org/asartori86/advanced-programming.svg?branch=master)](https://travis-ci.org/asartori86/advanced-programming)
+
+[SISSA webpage](http://www.math.sissa.it/course/phd-course-master-course/advanced-programming)
 
 Providing advanced knowledge of both theoretical and practical
 programming in C++ and Python, with particular regard to the
