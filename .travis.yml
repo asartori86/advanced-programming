@@ -12,6 +12,6 @@ install:
   - $COMPILER --version
 
 script:
-	- ls
-	- cd advanced-programming/lectures/01_intro/
-	- make
+  - ls
+  - cd advanced-programming/lectures/01_intro/
+  - make
