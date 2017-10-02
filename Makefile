@@ -1,17 +1,18 @@
 # Simple Makefile to compile all the sample codes provided during the
 # course of Advanced Programming
 
-all: L01
+FNAMES = 01_intro
+FOLDERS = $(addprefix lectures/, $(FNAMES))
 
-clean: C01
 
-L01:
-	$(info ***** Compiling codes of lecture 01 *****)
-	@cd lectures/01_intro && make
+all:
+	@for i in $(FOLDERS);do cd $$i; make; cd -; done
 
-C01:
-	$(info ***** Cleaning directory of lecture 01 *****)
-	@cd lectures/01_intro && make clean
+clean: 
+	@for i in $(FOLDERS);do cd $$i; make clean; cd -; done 
 
-.PHONY: L01 C01
+format: 
+	@for i in $(FOLDERS);do cd $$i; make format; cd -; done 
+
+.PHONY: all clean format
 
