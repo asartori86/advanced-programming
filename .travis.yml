@@ -11,4 +11,4 @@ install:
 script:
   - ls
   - cd lectures/01_intro/
-  - make
+  - make CXX=$CXX
