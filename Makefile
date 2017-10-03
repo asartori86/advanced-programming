@@ -9,7 +9,8 @@ all:
 	@for i in $(FOLDERS);do cd $$i; make; cd -; done
 
 clean: 
-	@for i in $(FOLDERS);do cd $$i; make clean; cd -; done 
+	@for i in $(FOLDERS);do cd $$i; make clean; cd -; done
+	@rm *~
 
 format: 
 	@for i in $(FOLDERS);do cd $$i; make format; cd -; done 
