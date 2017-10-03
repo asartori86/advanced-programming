@@ -10,7 +10,7 @@ all:
 
 clean: 
 	@for i in $(FOLDERS);do cd $$i; make clean; cd -; done
-	@rm *~
+	@find . -type f -name '*~' -exec rm '{}' \;
 
 format: 
 	@for i in $(FOLDERS);do cd $$i; make format; cd -; done 
