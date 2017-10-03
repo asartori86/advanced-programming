@@ -59,6 +59,7 @@ Depending on the number of the participants, the hands-on sessions will be ginve
   - `cd` in a suitable folder
   - `git clone https://github.com/asartori86/advanced-programming.git`
   - `cd advanced-programming`
+  - take a look at [software carpentry lecture](http://swcarpentry.github.io/git-novice/) and [pro git book](https://git-scm.com/book/en/v2) 
 - `N > 0`
   - open a terminal
   - `cd` to the folder `advanced-programming`
