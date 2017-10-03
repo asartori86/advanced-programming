@@ -1,4 +1,6 @@
+#include <iomanip>
 #include <iostream>
+#include <math.h> // M_PI
 #include <string>
 
 int main() {
@@ -39,6 +41,8 @@ int main() {
   // narrowing effect
   int var = 6.9; // try to initialize var with the universal and
                  // uniform initialization
+  // int v_narrow {6.9}; // compiler error or warning with variables
+  // int v_narrow_w {int(a+b)}; // suppress error/warning with a cast
 
   std::cout << var << "\n";
 
@@ -55,7 +59,7 @@ int main() {
   var = a * b;
   var = a % var; // modulus operator just between integers
 
-  bool test; 			
+  bool test;
   test = a == b;
   test = a < b;
   test = a > b;
@@ -68,6 +72,27 @@ int main() {
   } else {
     std::cout << "test is false\n";
   }
+
+  // constants
+
+  const int cc{7};
+  // cc = 9;			// error
+
+  constexpr double ce{cc * 8.1234 / M_PI}; // evaluated at compile-time
+
+  int ve{int(ce * a)}; // ok create a variable from constexpr
+
+  // constexpr int  n_ce {ve*8.1234/M_PI}; // error
+
+  // cast to void to suppress warning of unused variable
+  (void)ve;
+  long double lpi = 3.141592653589793238462L;
+  std::cout << std::setprecision(50) << M_PI << std::endl;
+  std::cout << std::hex << 43 << std::endl;
+  std::cout << std::oct << 43 << std::endl;
+  std::cout << std::dec << 43 << std::endl;
+
+  (void)lpi;
 
   return 0;
 }
