@@ -71,7 +71,7 @@ Depending on the number of the participants, the hands-on sessions will be ginve
   - fork the repository
   - clone either your fork or this repository
   - add the other remote
-- 'N>=0'
+- `N >= 0`
   - use branches
   - rebase on the correct master branch
   - merge the branches in your local master
@@ -86,5 +86,5 @@ Depending on the number of the participants, the hands-on sessions will be ginve
     - `git add`
     - `git commit`
     - `git merge --continue`
-    if(bigger mess)
-    	      -`git merge --abort`
+    - if(bigger mess)
+      - `git merge --abort`
