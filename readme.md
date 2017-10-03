@@ -52,3 +52,39 @@ Depending on the number of the participants, the hands-on sessions will be ginve
    of Python, you will learn how to program in object-oriented fashion
    in the Python programming language.
 
+## How to get the material
+### Non-experienced git users
+- Very first time `(N==0)`
+  - open a terminal
+  - `cd` in a suitable folder
+  - `git clone https://github.com/asartori86/advanced-programming.git`
+  - `cd advanced-programming`
+- `N > 0`
+  - open a terminal
+  - `cd` to the folder `advanced-programming`
+  - `git pull --rebase origin master`
+- if(conflict)
+  - ask
+
+### Experienced git users
+- Very first time `(N==0)`
+  - fork the repository
+  - clone either your fork or this repository
+  - add the other remote
+- 'N>=0'
+  - use branches
+  - rebase on the correct master branch
+  - merge the branches in your local master
+  - push on the master of your fork
+- if(conflict)
+  - if(rebase)
+    - `git add`
+    - `git rebase --continue`
+    - if(bigger mess)
+      	- `git rebase --abort`
+  - if(merge)
+    - `git add`
+    - `git commit`
+    - `git merge --continue`
+    if(bigger mess)
+    	      -`git merge --abort`
