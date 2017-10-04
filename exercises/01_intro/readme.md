@@ -14,10 +14,11 @@
 - Write a simple version of the Unix program `uniq`, which, when fed with a text, outputs the same text with adjacent identical lines collapsed to one.
 - Modify the above program to reproduce the behavior of `uniq -c`
 
-*Hint*: you can save the whole line in a string as follows
+*Hint*: you can scan the stdin as follows
 ```
 std::string line;
-std::getline(std::cin,line);
+while(std::getline(std::cin,line))
+{...}
 ```
 
 ## Getters
