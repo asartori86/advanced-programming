@@ -20,6 +20,17 @@ std::string line;
 while(std::getline(std::cin,line))
 {...}
 ```
+or
+```
+for(std::string line; std::getline(std::cin,line);)
+{...}
+```
+What do you think it is better? Why?
+
+Remember that if you type directly from stdin, you should press `Ctr+D` to close the stdin without interrupting the program. Moreover, you can redirect the content of a text to stdin trough the `<` operator
+```
+./a.out <a_file
+```
 
 ## Getters
 - write a function `get_int` that reads from stdin until a valid number is fed
