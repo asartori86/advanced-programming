@@ -35,11 +35,11 @@ Remember that if you type directly from stdin, you should press `Ctr+D` to close
 ## Getters
 - write a function `get_int` that reads from stdin until a valid number is fed
 - write a function `get_double` that reads from stdin until a valid number is fed
-*Hints*: to clear the error flag from `std::cin` by calling
+*Hints*: After a wrong input you have to clear the error flag from `std::cin`  calling
 ```
 std::cin.clear();
 ```
-and you can ignore what just read
+and ignore what just read
 ```
 std::cin.ignore();
 ```
