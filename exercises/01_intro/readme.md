@@ -14,7 +14,7 @@
 - Write a simple version of the Unix program `uniq`, which, when fed with a text, outputs the same text with adjacent identical lines collapsed to one.
 - Modify the above program to reproduce the behavior of `uniq -c`
 
-*Hint*: you can scan the stdin as follows
+*Hints*: you can scan the stdin as follows
 ```
 std::string line;
 while(std::getline(std::cin,line))
@@ -34,7 +34,8 @@ Remember that if you type directly from stdin, you should press `Ctr+D` to close
 
 ## Getters
 - write a function `get_int` that reads from stdin until a valid number is fed
-- write a function `get_double` that reads from stdin until a valid number is fed
+- write a function `get_double` that reads from stdin until a valid number is fed.
+
 *Hints*: After a wrong input you have to clear the error flag from `std::cin`  calling
 ```
 std::cin.clear();
@@ -56,9 +57,9 @@ std::cin.ignore();
 ## Text formatter
 - Write a simple text formatter that breaks the lines longer than a given number of characters. This formatter does not break words.
 
-*Hint* to know the size of a string you can call the member function `length`
+*Hint*: to get the size of a string you can call the member function `length`
 ```
 std::string word;
 std::cin >> word;
-std::cout << word.length();
+unsigned int l {word.length()};
 ```
