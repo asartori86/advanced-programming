@@ -26,7 +26,7 @@ continuous integration, unit testing).
 
 ## Locations
 Lecture room is A-005 in the main SISSA building in via Bonomea 265.
-On 10/10, 12/10 and 19/10 the class will be held in room A-133.
+On 12/10 and 19/10 the class will be held in room A-133.
 
 Depending on the number of the participants, the hands-on sessions will be ginve in A-003 **or** the lecture room (i.e., A-005 or A-133).
 
