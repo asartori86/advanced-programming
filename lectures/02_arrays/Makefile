@@ -18,3 +18,6 @@ clean:
 	rm -f $(EXE) *~
 
 .PHONY: clean
+
+pointers.x: pointers.cc
+	$(CXX) $< -o $@ -std=c++11
