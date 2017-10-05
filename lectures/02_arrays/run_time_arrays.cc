@@ -1,0 +1,35 @@
+#include <iostream>
+
+template <typename num>
+void print_vector(const num* vec, const int& n)
+{
+  const num * const vEnd = vec+n; // sentinel. range-for loops rely on this
+  for(; vec < vEnd; ++vec)
+    std::cout << *vec << std::endl;
+}
+
+// reads from command line the size of an array
+int main(int argc, char *argv[])
+{
+  if (argc != 2 )
+    {
+      std::cerr << "I need exactly one argument\n";
+      return 7;
+    }
+  const unsigned int len = atoi(argv[1]);
+  int *v {new int[len]};
+  double *vd {new double[len]};
+
+  // for (auto x : v)		// compile error. Can you understand
+  //   std::cout << x <<std::endl;	// what it is saying?
+  for (unsigned int i =0; i< len; ++i)
+    {
+    v[i] = i*1.1;
+    vd[i] = i*1.1;
+    }
+
+  print_vector<int>(v,len);
+  print_vector(vd,len);
+  
+  return 0;
+}
