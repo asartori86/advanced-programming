@@ -7,9 +7,13 @@ int main() {
   std::cout << "a is now " << a << std::endl;
 
   char **ppc;
+
   int *ap[7];
+
   int (*fp)(char *);
+
   int *f(char *);
+
   void *pv{pi};
   // *pv; // we cannot dereference void*
   // ++pv; // we cannot increment. Why?
@@ -22,11 +26,16 @@ int main() {
   pv = nullptr;
   pi2 = 0; // older codes. gets the nullptr
 
-  const int * cp = &a;
-  // *cp = 7; 			// error
-  int * const pc = &a;
+  const int * pc = &a;
+// *pc = 7; 			// error
+  a = 15;			// I can obviously change a
+
+  int * const cp = &a;
   int b = 8;
-  a = b; 			// I can obviously change a
-  // pc = &b			// error
+    a = b; 			
+  // cp = &b			// error
+
+    const int * const cpc = &a; // points to a fixed memory location
+				// and cannot change it
 return 0;
 }
