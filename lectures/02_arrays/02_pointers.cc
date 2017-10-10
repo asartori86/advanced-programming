@@ -26,16 +26,18 @@ int main() {
   pv = nullptr;
   pi2 = 0; // older codes. gets the nullptr
 
-  const int * pc = &a;
-// *pc = 7; 			// error
-  a = 15;			// I can obviously change a
+  const int *pc = &a;
+  // *pc = 7; 			// error
+  a = 15; // I can obviously change a
 
-  int * const cp = &a;
+  int *const cp = &a;
   int b = 8;
-    a = b; 			
+  a = b;
   // cp = &b			// error
 
-    const int * const cpc = &a; // points to a fixed memory location
-				// and cannot change it
-return 0;
+  const int *const cpc = &a; // points to a fixed memory location
+  // and cannot change it
+  a = 99;
+
+  return 0;
 }
