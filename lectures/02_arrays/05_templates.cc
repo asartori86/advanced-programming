@@ -1,9 +1,10 @@
 #include <iostream>
 
-template <typename num> void print_vector(const num *vec, const int n);
+template <typename num>
+void print_vector(const num* vec, const int n);
 
 // reads from command line the size of an array
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   if (argc != 2) {
     std::cerr << "I need exactly one argument\n";
     return 7;
@@ -11,8 +12,8 @@ int main(int argc, char *argv[]) {
 
   const int len = atoi(argv[1]);
 
-  int *v{new int[len]};
-  double *vd{new double[len]};
+  int* v{new int[len]};
+  double* vd{new double[len]};
 
   for (int i = 0; i < len; ++i) {
     v[i] = i * 1.1;
@@ -30,8 +31,9 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-template <typename num> void print_vector(const num *vec, const int n) {
-  const num *const vEnd = vec + n; // sentinel. range-for loops rely on this
+template <typename num>
+void print_vector(const num* vec, const int n) {
+  const num* const vEnd = vec + n;  // sentinel. range-for loops rely on this
   for (; vec < vEnd; ++vec)
     std::cout << *vec << std::endl;
 }

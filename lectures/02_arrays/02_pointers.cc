@@ -2,40 +2,40 @@
 
 int main() {
   int a{5};
-  int *pi{&a};
+  int* pi{&a};
   *pi = 9;
   std::cout << "a is now " << a << std::endl;
 
-  char **ppc;
+  char** ppc;
 
-  int *ap[7];
+  int* ap[7];
 
-  int (*fp)(char *);
+  int (*fp)(char*);
 
-  int *f(char *);
+  int* f(char*);
 
-  void *pv{pi};
+  void* pv{pi};
   // *pv; // we cannot dereference void*
   // ++pv; // we cannot increment. Why?
-  int *pi2 = static_cast<int *>(pv);
+  int* pi2 = static_cast<int*>(pv);
 
   pi = nullptr;
   ppc = nullptr;
   // ap = nullptr;			// error, why?
   fp = nullptr;
   pv = nullptr;
-  pi2 = 0; // older codes. gets the nullptr
+  pi2 = 0;  // older codes. gets the nullptr
 
-  const int *pc = &a;
+  const int* pc = &a;
   // *pc = 7; 			// error
-  a = 15; // I can obviously change a
+  a = 15;  // I can obviously change a
 
-  int *const cp = &a;
+  int* const cp = &a;
   int b = 8;
   a = b;
   // cp = &b			// error
 
-  const int *const cpc = &a; // points to a fixed memory location
+  const int* const cpc = &a;  // points to a fixed memory location
   // and cannot change it
   a = 99;
 
