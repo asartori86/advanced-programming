@@ -16,7 +16,7 @@ int main() {
   for (size_t k = 0; k < 9; ++k)
     std::cout << "af[" << k << "] = " << af[k] << '\n';
 
-  std::cout << "\n";
+  std::cout << "\n how is an array in memory?\n\n";
 
   for (size_t k = 0; k < 9; ++k)
     std::cout << "&af[" << k << "] = " << &af[k] << '\n';
