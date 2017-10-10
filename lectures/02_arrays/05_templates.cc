@@ -1,7 +1,13 @@
 #include <iostream>
 
 template <typename num>
-void print_vector(const num* vec, const int n);
+void print_vector(const num* vec, const int n);  // print_vector is
+                                                 // parametrized
+                                                 // w.r.t. the type
+                                                 // num. If you will
+                                                 // you can read it as
+                                                 // "for all types
+                                                 // num"
 
 // reads from command line the size of an array
 int main(int argc, char* argv[]) {
