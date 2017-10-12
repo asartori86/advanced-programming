@@ -1,6 +1,6 @@
 SRC = $(wildcard *.cc)
 CXX = c++
-CXXFLAGS = -g -std=c++14
+CXXFLAGS = -g -std=c++14 
 EXE = $(SRC:.cc=.x)
 
 .SUFFIXES:
