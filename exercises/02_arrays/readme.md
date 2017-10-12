@@ -4,17 +4,17 @@
 
 - Write a program that reads from stdin the length of an array and
   then store in it the numbers given from stdin. The program should
-  then prints the number in **reverse order**. Remember to properly
+  then prints the numbers in **reverse order**. Remember to properly
   free the used memory. You should divide the problem in two parts:
 
-  1. Write one **template** function that allocate on the *heap* one
+  1. Write one **template** function that allocates on the *heap* one
   array of a given size, initialize its elements and returns the
   pointer to the first element.
 
   2. Write a **template** function that prints the elements of an
   array in the reverse order.
 
-  3. Test with intgers and doubles.
+  3. Test with integers and doubles.
   
 *Hints*: remember that you should check you code with valgrind. If you
  have a MAC you might have bad surprises. Run valgrind on a **Linux**
@@ -27,10 +27,17 @@
   
   - you are free to choose the design and the implementation.
 
-  - please comment and motivate your choices (e.g., allocate a one big
+  - please comment and motivate your choices (e.g., allocate one big
     array, every time I find a new prime number I increase the size of
     the previous `primes` array, etc.)
-    
+
+*Hints*:
+- The remainder of a division between two integers can be computed as follows:
+```
+int remainder = 6%3;
+```
+- Inside a for loop, you can use `continue` to immediately go to the next iteration, `break` to exit the loop. Note that if you have two or more nested loops, the statements affect only the innermost loop.
+
 
 ## Sieve of Eratosthenes
 
