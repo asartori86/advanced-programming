@@ -32,11 +32,15 @@
     the previous `primes` array, etc.)
 
 *Hints*:
-- The remainder of a division between two integers can be computed as follows:
+
+- The remainder of a division between two integers can be computed as
+  follows:
 ```
 int remainder = 6%3;
 ```
-- Inside a for loop, you can use `continue` to immediately go to the next iteration, `break` to exit the loop. Note that if you have two or more nested loops, the statements affect only the innermost loop.
+- Inside a for loop, you can use `continue` to immediately go to the
+  next iteration, `break` to exit the loop. Note that if you have two
+  or more nested loops, the statements affect only the innermost loop.
 
 
 ## Sieve of Eratosthenes
@@ -62,7 +66,8 @@ $ ./a.out 10
 *Hints*:
 - https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes :)
 
-- the square root of a number can be found in `<math.h>`
+- the function `std::sqrt` to compute the square root of a number can
+  be found in `<math.h>`
 ```
 #include <math.h>
 ...
