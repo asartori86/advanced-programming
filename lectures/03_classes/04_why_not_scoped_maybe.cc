@@ -1,6 +1,6 @@
 #include <iostream>
 
-enum multiple_flags: unsigned int {
+enum multiple_flags : unsigned int {
   flag1 = 1,
   flag2 = 2,
   flag3 = 4,
@@ -15,15 +15,12 @@ enum multiple_flags: unsigned int {
   comb3 = comb1 | flag3,
 };
 
-
 void do_complicated_stuff(multiple_flags flags);
 
 multiple_flags operator|(const multiple_flags f1, const multiple_flags f2) {
   return static_cast<multiple_flags>(static_cast<unsigned int>(f1) |
                                      static_cast<unsigned int>(f2));
 }
-
-
 
 int main() {
   std::cout << "testing flag1 and flag3\n"
@@ -47,7 +44,6 @@ int main() {
 
   return 0;
 }
-
 
 multiple_flags& operator|=(multiple_flags& f1, const multiple_flags f2) {
   f1 = f1 | f2;
