@@ -11,6 +11,9 @@ all: $(EXE)
 %.x: %.cc
 	$(CXX) $< -o $@ $(CXXFLAGS)
 
+08_template_class_c++14.x: 08_template_class_c++14.cc
+	$(CXX) $< -o $@ $(CXXFLAGS) -std=c++14
+
 format: $(SRC)
 	@clang-format -i $^ 2>/dev/null || echo "Please install clang-format to run this commands"
 
