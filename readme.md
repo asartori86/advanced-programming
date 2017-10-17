@@ -28,8 +28,6 @@ continuous integration, unit testing).
 Lecture room is A-005 in the main SISSA building in via Bonomea 265.
 On 12/10 the lecture will at the Big meeting room (VII floor) and on 19/10 the class will be held in room A-004.
 
-Depending on the number of the participants, the hands-on sessions will be ginve in A-003 **or** the lecture room (i.e., A-005 or A-133).
-
 ## Syllabus
 
 1. Scientific programming environment. You will learn the basic
