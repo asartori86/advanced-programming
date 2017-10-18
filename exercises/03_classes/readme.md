@@ -45,7 +45,7 @@ above).
 ## Helper functions
 Implement the following external helper functions (i.e., they are not part of the class):
 - `bool operator==(const Date& lhs, const Date& rhs);`
-- **optional** `bool operator!=(const Date& lhs, const Date& rhs);`
+- `bool operator!=(const Date& lhs, const Date& rhs);`
 - `std::ostream& operator<<(std::ostream& os, const Date& d);`
 - **optional** `bool is_leap(const int y);`
 
@@ -64,3 +64,5 @@ std::ostream& operator<<(std::ostream& os, const Foo& f)
 }
 ```
 Of course you can add parenthesis, or whatever to embellish the output
+- a year is leap if it is divisible by 4. If it is also divisible by 400 is not leap.
+- try to avoid code duplication
