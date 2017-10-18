@@ -45,8 +45,9 @@ int main() {
   return 0;
 }
 
-void operator|=(multiple_flags& f1, const multiple_flags f2) {
+multiple_flags& operator|=(multiple_flags& f1, const multiple_flags f2) {
   f1 = f1 | f2;
+  return f1;
 }
 
 void compute_multiple_flags(multiple_flags& f) {
