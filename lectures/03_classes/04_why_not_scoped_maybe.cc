@@ -45,22 +45,20 @@ int main() {
   return 0;
 }
 
-multiple_flags& operator|=(multiple_flags& f1, const multiple_flags f2) {
+void operator|=(multiple_flags& f1, const multiple_flags f2) {
   f1 = f1 | f2;
-  return f1;
 }
 
-multiple_flags& compute_multiple_flags(multiple_flags& f) {
+void compute_multiple_flags(multiple_flags& f) {
   if (f & flag4)
     f |= (flag1 | flag2);
   if (f & flag5)
     f |= flag3;
-  return f;
 }
 
 void do_complicated_stuff(multiple_flags flags) {
   // update flags correctly
-  flags = compute_multiple_flags(flags);
+  compute_multiple_flags(flags);
 
   if (flags & flag1)
     std::cout << "flag 1 selected\n";
