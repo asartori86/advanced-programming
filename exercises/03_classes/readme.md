@@ -19,7 +19,7 @@ Implement a class `Date`. This class must meet the following requirements:
 class Foo{
 public:
 
-int foo() {return an_int;} // note no ; at the end
+int foo() const {return an_int;} // note no ; at the end
 
 int bar(); 
 
