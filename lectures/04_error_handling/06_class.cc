@@ -1,65 +1,88 @@
 #include <iostream>
 
-enum class Month { Jan = 1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec };
+enum class Month {
+  Jan = 1,
+  Feb,
+  Mar,
+  Apr,
+  May,
+  Jun,
+  Jul,
+  Aug,
+  Sep,
+  Oct,
+  Nov,
+  Dec
+};
 
+struct Invalid_Date {
+  Invalid_Date(const unsigned int i, const Month m) : day{i}, month{m} {}
+  const unsigned int day;
+  const Month month;
+};
 
-class Date{
+class Date {
   unsigned int day;
   Month month;
   int year;
-  void check_day(const unsigned int d,
-		 const unsigned int threshold) {if(d > threshold)}
-public:
-  void set_date(unsigned int d,
-		Month m,
-		int y);
+  // void check_day(const unsigned int d,
+  // 		 const unsigned int threshold);
+ public:
+  void set_date(unsigned int d, Month m, int y);
+  unsigned int get_day() const { return day; }
+  Month get_month() const { return month; }
+  int get_year() const { return year; }
 };
 
-void Date::set_date(unsigned int d, Month m, int y)
-{
-  if (d==0)
-    {
-      std::cerr << "Invalid date!\n";
-    return;
-    }
-  switch (m){
-  case Month::Jan :
-  case Month::Mar :
-  case Month::May :
-  case Month::Jul :
-  case Month::Aug :
-  case Month::Oct :
-  case Month::Dec :
-    if (d>31)
-    {
-      std::cerr << "Invalid date!\n";
-    return;
-    }
-    break;
-  case Month::Feb :
-    
+// void Date::check_day(const unsigned int d, const unsigned int threshold)
+//  {
+//    if(d > threshold)
+//      // throw Invalid_Day{d};
+//  }
 
-
+void Date::set_date(unsigned int d, Month m, int y) {
+  if (d == 0) {
+    std::cerr << "Invalid date!\n";
+    return;
   }
-  if (d>0 && d<=31) // we should do better, check for the given month
+  switch (m) {
+    case Month::Jan:
+    case Month::Mar:
+    case Month::May:
+    case Month::Jul:
+    case Month::Aug:
+    case Month::Oct:
+    case Month::Dec:
+      if (d > 31)
+        throw Invalid_Date(d, m);
+      break;
+    case Month::Feb:
+      if (d > 28)  // should check for leap years
+        throw Invalid_Date(d, m);
+      break;
+    default:
+      if (d > 30)
+        throw Invalid_Date(d, m);
+
+      day = d;
+      month = m;
+      year = y;
+  }
 }
 
+std::ostream& operator<<(std::ostream& os, const Date& d) {
+  return os << d.get_day() << ", " << static_cast<int>(d.get_month()) << ", "
+            << d.get_year() << std::endl;
+}
 
-int main()
-{
-  Date d1;
-  d1.day = 5;
-  d1.month = Month::Aug;
-  d1.year = 1986;
-
-  Date* ptd {&d1};
-
-  ptd->day = 37;  // possible typo 
-  ptd->year=2017;
-
-  ++d1.day;
-  std::cout << ptd->day << std::endl;
-  
-  
-  return 0;
+int main() {
+  try {
+    Date d1;
+    d1.set_date(29, Month::Feb, 1987);
+    std::cout << d1;
+    return 0;
+  } catch (Invalid_Date d) {
+    std::cerr << "Invalid date: " << d.day << ", " << static_cast<int>(d.month)
+              << std::endl;
+  }
 }
