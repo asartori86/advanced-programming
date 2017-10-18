@@ -26,7 +26,7 @@ continuous integration, unit testing).
 
 ## Locations
 Lecture room is A-005 in the main SISSA building in via Bonomea 265.
-On 12/10 the lecture will at the Big meeting room (VII floor) and on 19/10 the class will be held in room A-004.
+On 12/10 and 19/10 the lecture will at the Big meeting room (VII floor).
 
 ## Syllabus
 
