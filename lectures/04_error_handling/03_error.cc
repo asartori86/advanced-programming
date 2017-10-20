@@ -1,7 +1,7 @@
 #include <iostream>
 #include <math.h>
 #include "error.h"
-
+#include <assert.h>
 // implment a square root function that "deals with" negative
 // numbers. Moreover according to the logic of the program, d should
 // never be greater than 50
@@ -31,11 +31,12 @@ int main() {
 double square_root(const double d) {
   // test the pre-conditions
   if (d < 0)
-    errorspace::error("Cannot handle negative numbers. You gave me", d,
-                      __FILE__, __LINE__);
+    errorspace::error(__FILE__, __LINE__, __FUNCTION__,
+                      "Cannot handle negative numbers. You gave me", d);
   if (d > 50)
     errorspace::error(
-        "The argument of square_root must be lower than 50. You gave me", d,
-        __FILE__, __LINE__);
+        __FILE__, __LINE__, __FUNCTION__,
+        "The argument of square_root must be lower than 50. You gave me", d);
+
   return sqrt(d);
 }

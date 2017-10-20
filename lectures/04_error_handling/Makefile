@@ -1,7 +1,8 @@
 SRC = $(wildcard *.cc)
 CXX = c++
-CXXFLAGS = -g -std=c++11
+CXXFLAGS = -g -std=c++14
 EXE = $(SRC:.cc=.x)
+INC = $(wildcard *.h)
 
 .SUFFIXES:
 .SUFFIXES: .cc .x
@@ -11,7 +12,7 @@ all: $(EXE)
 %.x: %.cc 
 	$(CXX) $< -o $@ $(CXXFLAGS)
 
-format: $(SRC)
+format: $(SRC) $(INC)
 	@clang-format -i $^ 2>/dev/null || echo "Please install clang-format to run this commands"
 
 clean:
@@ -22,4 +23,4 @@ clean:
 pointers.x: pointers.cc
 	$(CXX) $< -o $@ -std=c++11
 
-03_error.x: error.h 03_error.cc
+03_error.x: error.h
