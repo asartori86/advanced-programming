@@ -8,7 +8,7 @@ EXE = $(SRC:.cc=.x)
 
 all: $(EXE)
 
-%.x: %.cc
+%.x: %.cc 
 	$(CXX) $< -o $@ $(CXXFLAGS)
 
 format: $(SRC)
@@ -21,3 +21,5 @@ clean:
 
 pointers.x: pointers.cc
 	$(CXX) $< -o $@ -std=c++11
+
+03_error.x: error.h 03_error.cc
