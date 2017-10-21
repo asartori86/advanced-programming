@@ -1,5 +1,5 @@
+#include <cmath>
 #include <iostream>
-#include <math.h>
 
 // implment a square root function that "deals with" negative
 // numbers. Moreover according to the logic of the program, d should

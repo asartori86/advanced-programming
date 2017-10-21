@@ -1,11 +1,11 @@
 #ifndef __AP_ERROR_H__
 #define __AP_ERROR_H__
 
+#include <assert.h>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
 #include <string>
-#include <assert.h>
 
 namespace ap {
 

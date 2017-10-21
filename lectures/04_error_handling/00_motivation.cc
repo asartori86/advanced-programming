@@ -1,5 +1,5 @@
+#include <cmath>
 #include <iostream>
-#include <math.h>
 
 double complicated_function(const double& num) {
   return num / 8.9;

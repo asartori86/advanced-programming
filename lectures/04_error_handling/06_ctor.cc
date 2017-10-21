@@ -1,5 +1,5 @@
-#include <iostream>
 #include "ap_error.h"
+#include <iostream>
 #include <vector>
 
 class Vector {
