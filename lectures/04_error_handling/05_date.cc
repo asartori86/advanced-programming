@@ -86,7 +86,7 @@ std::string InvalidDate(const unsigned int day,
 
 void Date::set_date(const unsigned int d, const Month m, const int y) {
   AP_assert(d != 0, "Invalid date:", d, m, y);
-  // AP_assert(d!=0, InvalidDate(d,m,y));
+  // AP_assert(d != 0, InvalidDate(d,m,y));
 
   switch (m) {
     case Month::Jan:
