@@ -7,7 +7,7 @@
 #include <string>
 #include <assert.h>
 
-namespace errorspace {
+namespace ap {
 
   namespace internal {
     static std::string sep = " ";
@@ -39,22 +39,22 @@ namespace errorspace {
 
   inline void reset_separator() { internal::sep = " "; }
 
-}  // close namespace errorspace
+}  // close namespace ap
 
 // some useful macros
-#define Error(...)                                                            \
-  errorspace::internal::pretty_error(__FILE__, __LINE__, __PRETTY_FUNCTION__, \
-                                     __VA_ARGS__)
+#define AP_error(...)                                                 \
+  ap::internal::pretty_error(__FILE__, __LINE__, __PRETTY_FUNCTION__, \
+                             __VA_ARGS__)
 
 #ifndef NDEBUG
-#define Assert(cond, ...)                                                   \
-  {                                                                         \
-    if (!(cond))                                                            \
-      errorspace::internal::pretty_error(__FILE__, __LINE__,                \
-                                         __PRETTY_FUNCTION__, __VA_ARGS__); \
+#define AP_assert(cond, ...)                                              \
+  {                                                                       \
+    if (!(cond))                                                          \
+      ap::internal::pretty_error(__FILE__, __LINE__, __PRETTY_FUNCTION__, \
+                                 __VA_ARGS__);                            \
   }
 #else
-#define Assert(cond, ...)
+#define AP_assert(cond, ...)
 #endif
 
 template <typename t1, typename t2, typename t3>
@@ -64,7 +64,7 @@ std::string NotInRange(const t1& a, const t2& b, const t3& c) {
   return os.str();
 }
 
-namespace errorspace {
+namespace ap {
   namespace internal {
     template <typename T, typename... Tail>
     void pretty_error(const char* sfile,
@@ -79,13 +79,13 @@ namespace errorspace {
             "\n"
          << "A runtime exception has been thrown\n\n"
          << "   function: " << sfunc << '\n'
-         << "   file:     " << sfile << '\n'
-         << "   line:     " << line << "\n\n"
+         << "       file: " << sfile << '\n'
+         << "       line: " << line << "\n\n"
          << "with the following output:\n\n"
          << f;
       error(std::string{os.str()}, rest...);
     }
   }  // close namespace internal
-}  // close namespace errorspace
+}  // close namespace ap
 
 #endif

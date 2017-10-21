@@ -23,7 +23,9 @@ clean:
 pointers.x: pointers.cc
 	$(CXX) $< -o $@ -std=c++11
 
-03_error.x: error.h
-04_assert.x: error.h
+03_error.x: ap_error.h
+04_assert.x: ap_error.h
+05_date.x: ap_error.h
+06_ctor.x: ap_error.h
 
 

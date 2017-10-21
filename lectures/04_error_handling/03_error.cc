@@ -1,4 +1,4 @@
-#include "error.h"
+#include "ap_error.h"
 #include <assert.h>
 #include <iostream>
 #include <math.h>
@@ -30,18 +30,15 @@ int main() {
 
 double square_root(const double d) {
   // test the pre-conditions
-  int a = 99;
-  // errorspace::sep=" --- ";
+  // ap::sep=" --- ";
   if (d == 0)
-    errorspace::error(
+    ap::error(
         "Do you really need to call a function to compute the square root of "
         "0???\n");
   if (d < 0)
-    errorspace::error("Cannot handle negative numbers. You gave me", d, d, d, d,
-                      a, a, d, "ciao");
+    ap::error("Cannot handle negative numbers. I got", d);
   if (d > 50)
-    Error("The argument of square_root must be lower than 50. You gave me", d,
-          "\nblabla c,");
+    AP_error("The argument of square_root must be lower than 50. I got", d);
 
   return sqrt(d);
 }

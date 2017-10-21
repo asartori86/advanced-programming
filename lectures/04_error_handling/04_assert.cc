@@ -1,4 +1,4 @@
-#include "error.h"
+#include "ap_error.h"
 #include <assert.h>
 #include <iostream>
 #include <math.h>
@@ -25,7 +25,7 @@ int main() {
 double square_root(const double d) {
   // test the pre-conditions
   // assert(d >= 0 && d <= 50);
-  // Assert(d>=0 && d<=50, "d should be in the range [0,50]", "d=",d);
-  Assert(d >= 0 && d <= 50, NotInRange(0, 50, d));
+  // AP_assert(d>=0 && d<=50, "d should be in the range [0,50]", "d=",d);
+  AP_assert(d >= 0 && d <= 50, NotInRange(0, 50, d));
   return sqrt(d);
 }

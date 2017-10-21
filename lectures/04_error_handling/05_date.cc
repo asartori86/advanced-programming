@@ -1,5 +1,5 @@
 #include <iostream>
-#include "error.h"
+#include "ap_error.h"
 #include <sstream>
 
 enum class Month {
@@ -85,8 +85,8 @@ std::string InvalidDate(const unsigned int day,
 }
 
 void Date::set_date(const unsigned int d, const Month m, const int y) {
-  Assert(d != 0, "Invalid date:", d, m, y);
-  // Assert(d!=0, InvalidDate(d,m,y));
+  AP_assert(d != 0, "Invalid date:", d, m, y);
+  // AP_assert(d!=0, InvalidDate(d,m,y));
 
   switch (m) {
     case Month::Jan:
@@ -96,13 +96,13 @@ void Date::set_date(const unsigned int d, const Month m, const int y) {
     case Month::Aug:
     case Month::Oct:
     case Month::Dec:
-      Assert(d <= 31, InvalidDate(d, m, y));
+      AP_assert(d <= 31, InvalidDate(d, m, y));
       break;
     case Month::Feb:
-      Assert(d <= 28, InvalidDate(d, m, y));
+      AP_assert(d <= 28, InvalidDate(d, m, y));
       break;
     default:
-      Assert(d <= 30, InvalidDate(d, m, y));
+      AP_assert(d <= 30, InvalidDate(d, m, y));
       break;
   }
   day = d;
