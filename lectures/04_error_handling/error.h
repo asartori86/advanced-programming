@@ -1,7 +1,11 @@
+#ifndef __AP_ERROR_H__
+#define __AP_ERROR_H__
+
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <assert.h>
 
 namespace errorspace {
 
@@ -25,7 +29,7 @@ namespace errorspace {
 
   template <typename T1, typename T2, typename... Tail>
   void error(const T1& f, const T2& s, const Tail&... rest) {
-    std::cout << __PRETTY_FUNCTION__ << std::endl;
+    /* std::cout << __PRETTY_FUNCTION__ << std::endl; */
     std::ostringstream os;
     os << f << internal::sep << s;
     error(os.str(), rest...);
@@ -33,7 +37,7 @@ namespace errorspace {
 
   inline void set_separator(const std::string& s) { internal::sep = s; }
 
-  inline void reset_separator(const std::string& s) { internal::sep = " "; }
+  inline void reset_separator() { internal::sep = " "; }
 
 }  // close namespace errorspace
 
@@ -83,3 +87,5 @@ namespace errorspace {
     }
   }  // close namespace internal
 }  // close namespace errorspace
+
+#endif

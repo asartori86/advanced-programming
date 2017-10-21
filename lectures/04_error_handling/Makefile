@@ -1,6 +1,6 @@
 SRC = $(wildcard *.cc)
 CXX = c++
-CXXFLAGS = -g -std=c++11
+CXXFLAGS = -g -std=c++11 -Wall -Wextra
 EXE = $(SRC:.cc=.x)
 INC = $(wildcard *.h)
 
@@ -25,5 +25,5 @@ pointers.x: pointers.cc
 
 03_error.x: error.h
 04_assert.x: error.h
-simple_matrix.x: error.h
-simple_matrix.x: CXXFLAGS+= -std=c++14
+
+
