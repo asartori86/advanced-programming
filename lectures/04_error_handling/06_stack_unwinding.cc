@@ -49,10 +49,20 @@ int main() {
     // inside the catch-clause
     ManyResources mr;
     Bar b;
+
   } catch (std::exception& e) {
     std::cerr << e.what() << std::endl;
-    delete[] raw_ptr;  // house clening
+
+    delete[] raw_ptr;  // <---
     return 1;
+
+  } catch (...) {
+    std::cerr << "Unknown exception. Aborting.\n" << std::endl;
+
+    delete[] raw_ptr;  // <---
+    return 2;
   }
+
+  delete[] raw_ptr;  // <---
   return 0;
 }
