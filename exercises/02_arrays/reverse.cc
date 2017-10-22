@@ -1,11 +1,14 @@
 #include <iostream>
 #include <string>
 
+template <typename datatype>
+datatype array_init(int n);
+
+
 int main()
 {
   unsigned int length;
-  int* pp;
-//  void array_init;
+  double* pp;
 
   /* take array length */
   std::cout << "Write the array length: ";
@@ -16,7 +19,7 @@ int main()
 	std::cin.ignore(1000, '\n'); }
 
   /* initialize the array */
-  pp = array_init<double>(length);
+  *pp = array_init<double>(length);
 
 //  int* pp = new int[length];
 
@@ -33,6 +36,8 @@ int main()
   std::cout << pp << std::endl << *(pp+1) << std::endl << &pp;
 */
 
+  std::cout << pp[0] << pp[1];
+
   delete[] pp;
 
 
@@ -40,10 +45,10 @@ return 0;
 }
 
 template <typename datatype>
-void array_init<datatype>(int n)
+datatype array_init(int n)
 {
-  int* vec = new datatype[n]{0};
+  datatype* vec = new datatype[n]{0};
 
-  return vec;
+  return *vec;
 }
 
