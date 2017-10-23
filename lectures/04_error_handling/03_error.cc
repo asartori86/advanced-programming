@@ -1,7 +1,9 @@
-#include "ap_error.h"
 #include <assert.h>
 #include <cmath>
 #include <iostream>
+
+#include "ap_error.h"
+
 // implment a square root function that "deals with" negative
 // numbers. Moreover according to the logic of the program, d should
 // never be greater than 50
