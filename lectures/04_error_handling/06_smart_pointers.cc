@@ -9,6 +9,9 @@ class Vector {
 
  public:
   Vector(const unsigned int l) : elem{new double[l]} {}
+  double& operator[](const unsigned int i) {
+    return elem[i];
+  }  // you can use smart pointers almost like raw pointers
 };
 
 class ManyResources {
