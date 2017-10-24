@@ -18,12 +18,12 @@ int main() {
     double d = square_root(number);
     std::cout << "square root of " << number << " is " << d << '\n';
     return 0;
-  } catch (Negative_number) {
+  } catch (const Negative_number) {
     std::cerr << "The square root of a negative number is a complex. "
                  "square_root() is\n"
               << "limited to handle positive double numbers.\n";
     return 1;
-  } catch (Bigger_than_expected) {
+  } catch (const Bigger_than_expected) {
     std::cerr << "The function square_root has been called with a parameter "
                  "greater than 50.\n"
               << "This means there is a bug in the algorithm that generated "

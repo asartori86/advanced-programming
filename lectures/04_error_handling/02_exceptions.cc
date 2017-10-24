@@ -18,7 +18,7 @@ int main() {
     double d = square_root(number);
     std::cout << "square root of " << number << " is " << d << '\n';
     return 0;
-  } catch (Square_root_invalid& s) {
+  } catch (const Square_root_invalid& s) {
     std::cerr << s.message << std::endl;
     return 1;
   } catch (...) {

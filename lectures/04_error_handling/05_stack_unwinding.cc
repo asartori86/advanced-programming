@@ -60,7 +60,7 @@ int main() {
     ManyResources mr;
     Bar b;
 
-  } catch (std::exception& e) {
+  } catch (const std::exception& e) {
     std::cerr << e.what() << std::endl;
 
     delete[] raw_ptr;  // <---
