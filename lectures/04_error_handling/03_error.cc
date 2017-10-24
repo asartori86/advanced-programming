@@ -9,10 +9,6 @@
 // never be greater than 50
 double square_root(const double d);
 
-struct Square_root_invalid {
-  std::string message;
-};
-
 int main() {
   try {
     std::cout << "please insert a number\n";

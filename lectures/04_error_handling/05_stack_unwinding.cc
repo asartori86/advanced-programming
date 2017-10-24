@@ -36,8 +36,8 @@ class ManyResources {
   ManyResources() : ptr{nullptr}, v{3} {
     std::cout << "Manyresources\n";
     try {
-      // AP_error("Error in ManyResources ctor\n"); // what happens if
-      ptr = new double[5];
+      // AP_error("Error in ManyResources ctor\n"); // what happens here?
+      ptr = new double[5];  // new(std::nothrow) double[5] could be better
       AP_error("Error in ManyResources ctor\n");
     } catch (...) {
       delete[] ptr;  // <----
