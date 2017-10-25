@@ -37,6 +37,15 @@ class List {
   // print the values of the nodes
   void print();
 
+  // return the size of the list
+  unsigned int size();
+
+  // delete all the nodes of the list
+  void reset();
+
+  // prune node storing the value v
+  void prune_node(const value_type; v);
+
   // implement suitable constructor(s) for List
 
 
