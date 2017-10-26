@@ -3,11 +3,11 @@
 
 template <typename num>
 class Vector{
-  std::unique_ptr<num[]> elems;
   unsigned int _size;
+  std::unique_ptr<num[]> elems;
 public:
   explicit Vector(const unsigned int s);
-
+  // Vector(std::initializer_list<num> lst);
   unsigned int size() const noexcept;
 
   num& operator[](const unsigned int i) noexcept;
@@ -41,7 +41,7 @@ void print_vector(const char* s,const Vector<num>& v)
 {
   std::cout <<"-----------------------------------\n"
 	    << s << "\n"
-	    << "size  : "<< v.size() << "\n"
+	    << " size : "<< v.size() << "\n"
 	    << "elems : " << v
 	    <<"-----------------------------------\n";
 }
