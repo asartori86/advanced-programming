@@ -8,8 +8,7 @@ class Vector {
   std::unique_ptr<num[]> elems;
 
  public:
-  explicit Vector(const unsigned int s, int val)
-      : _size{s}, elems{new num[s]{}} {
+  explicit Vector(const unsigned int s) : _size{s}, elems{new num[s]{}} {
     std::cout << "Vector ctor\n";
   }
 
@@ -36,9 +35,9 @@ class Vector {
 
 template <typename num>
 num& Vector<num>::at(const unsigned int i) {
-  if (i < _size)
-    return elems[i];
-  AP_error("Out of bound:", i, "is not smaller than", _size);
+  if (i >= _size)
+    AP_error("Out of bound:", i, "is not smaller than", _size);
+  return elems[i];
 }
 
 template <typename num>
