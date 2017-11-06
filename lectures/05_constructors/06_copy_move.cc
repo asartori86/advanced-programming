@@ -14,8 +14,16 @@ class Vector {
     std::cout << "custom ctor\n";
   }
 
+  // Vector(const std::initializer_list<num> args)
+  //     : _size{args.size()}, elem{new num[_size]} {
+  //   std::cout << "list ctor\n";
+  //   std::uninitialized_copy(args.begin(), args.end(), begin());
+  // }
+
   // default ctor
-  Vector() : _size{}, elem{} { std::cout << "default ctor\n"; }
+  Vector() { std::cout << "default ctor\n"; }
+  // Vector() = default;
+  // Vector() : _size{}, elem{} { std::cout << "default ctor\n"; }
 
   // copy semantics
   // copy ctor -- deep copy
@@ -25,10 +33,12 @@ class Vector {
 
   // move semantics
   // move ctor
-  Vector(Vector&& v) : _size{std::move(v._size)}, elem{std::move(v.elem)} {
+  Vector(Vector&& v) noexcept
+      : _size{std::move(v._size)}, elem{std::move(v.elem)} {
     std::cout << "move ctor\n";
   }
-  Vector& operator=(Vector&& v) {
+
+  Vector& operator=(Vector&& v) noexcept {
     std::cout << "move assignment\n";
     _size = std::move(v._size);
     elem = std::move(v.elem);
@@ -54,29 +64,45 @@ Vector<num>::Vector(const Vector& v) : _size{v._size}, elem{new num[_size]} {
   std::cout << "copy ctor\n";
   for (std::size_t i = 0; i < _size; ++i)
     elem[i] = v[i];
+  // std::uninitialized_copy(v.begin(),v.end(),this->begin()); //use placement
+  // new
 }
 
 // copy assignment
 template <typename num>
 Vector<num>& Vector<num>::operator=(const Vector& v) {
   std::cout << "copy assignment\n";
+
+  // we could decide that this operation is allowed if and only if
+  // _size == v._size
+  //
+  // AP_assert(_size == v._size, "Vector lenght mismatch");
+  // probably the just mentioned approach is safier..
+
   _size = v._size;
   elem.reset(new num[_size]);
-  for (std::size_t i = 0; i < _size; ++i)
-    elem[i] = v[i];
+
+  // for (std::size_t i = 0; i < _size; ++i)
+  //   elem[i] = v[i];
+
+  std::copy(v.begin(), v.end(), this->begin());
   return *this;
+
+  // is this approach consistent with self-assignment vx=vx?
 }
 
-// define sum between two arrays
 template <typename num>
 Vector<num> operator+(const Vector<num>& lhs, const Vector<num>& rhs) {
   const auto size = lhs.size();
+
   AP_assert(size == rhs.size(), "Vector lenght mismatch:", size, "!=",
             rhs.size(), "\nlhs:", lhs, "\nrhs:", rhs);
-  Vector<num> res{size};
+
+  Vector<num> res(size);
   for (std::size_t i = 0; i < size; ++i)
     res[i] = lhs[i] + rhs[i];
-  return std::move(res);
+
+  return res;
 }
 
 template <typename num>
@@ -91,6 +117,11 @@ int main() {
   try {
     std::cout << "Vector<int> v0; calls\n";
     Vector<int> v0;
+    std::cout << v0.size() << "\n";
+    std::cout << "Vector<int> v00{}; calls\n";
+    Vector<int> v00{};
+    std::cout << v00.size() << "\n";
+
     std::cout << "\nVector<double> v1{5}; calls\n";
     Vector<double> v1{5};
 
@@ -102,7 +133,10 @@ int main() {
     Vector<double> v3{std::move(v1)};  // now v1 should not be used
     std::cout << "\nv3 = v2; calls\n";
     v3 = v2;
+    std::cout << "\nv2 = " << v2;
+    std::cout << "v3 = " << v3;
 
+    std::cout << "\nassign some values to v3\n";
     {
       // auto i = v3.size();
       // while (i--)
@@ -112,20 +146,25 @@ int main() {
       for (auto& x : v3)
         x = c++;
     }
-
+    // v3=v3;
     std::cout << "\nv2 = " << v2;
     std::cout << "v3 = " << v3;
 
-    std::cout << "\nVector<double> v4{v3 + v2}; calls\n";
-    Vector<double> v4{v3 + v2};
+    std::cout << "\nVector<double> v4{v3 + v3}; calls\n";
+    Vector<double> v4{v3 + v3};
 
     std::cout << "v4 = " << v4;
+
+    std::cout << "\nNRVO: Named Return Value Optimization\n";
 
     std::cout << "\nv4 = v3 + v3 + v2 + v3; calls\n";
     v4 = v3 + v3 + v2 + v3;
     std::cout << v4;
 
     std::cout << "\nLet's test our assert in operator+\n";
+    std::cout << "Vector<int> a{5};\n"
+              << "Vector<int> b{7};\n"
+              << "Vector<int> c{a + b}\n";
     Vector<int> a{5};
     Vector<int> b{7};
     Vector<int> c{a + b};
