@@ -9,3 +9,4 @@ Write a `class Matrix` that should be template on the element type. Implement th
 - `operator()(const std::size_t i, const std::size_t j)` that uses `at` when **not** compiled with `-DNDEBUG` and uses `operator[]` when compiled with `-DNDEBUG`
 - `operator+`
 - `operator<<`
+- *optional*: constructor with `std::initializer_list`
