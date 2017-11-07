@@ -30,9 +30,12 @@ class Vector {
   num* end() noexcept { return elem.get() + _size; }
 
   void deep_copy() {
-    const num* p = elem.get();
-    elem = std::shared_ptr<num>{new num[_size]{}, deleter<num>{}};
-    std::copy(p, p + _size, elem.get());
+    if (elem.use_count() > 1) {
+      std::cout << "deep\n";
+      const num* p = elem.get();
+      elem = std::shared_ptr<num>{new num[_size], deleter<num>{}};
+      std::uninitialized_copy(p, p + _size, elem.get());
+    }
   }
 };
 
@@ -53,9 +56,15 @@ int main() {
 
   v1[0] = 99;
 
+  std::cout << "\nv1[0] = 99;\n";
   std::cout << "v1 = " << v1;
   std::cout << "v2 = " << v2;
 
+  std::cout << "\nv2.deep_copy();\n";
+  std::cout << "v2.deep_copy();\n";
+  std::cout << "v1[6] = 77;\n";
+
+  v2.deep_copy();
   v2.deep_copy();
   v1[6] = 77;
 

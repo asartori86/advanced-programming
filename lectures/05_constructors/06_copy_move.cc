@@ -28,6 +28,7 @@ class Vector {
   // copy semantics
   // copy ctor -- deep copy
   Vector(const Vector& v);
+
   // copy assignment -- deep copy
   Vector& operator=(const Vector& v);
 
@@ -38,6 +39,7 @@ class Vector {
     std::cout << "move ctor\n";
   }
 
+  // move assignment
   Vector& operator=(Vector&& v) noexcept {
     std::cout << "move assignment\n";
     _size = std::move(v._size);

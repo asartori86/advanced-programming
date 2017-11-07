@@ -16,13 +16,14 @@ struct Y {
 };
 
 int main() {
-  X x1;
-  X x2{};
+  X x1;    // default ctor
+  X x2{};  // default ctor
+  // X x3 {1,2.3,'t'}; // compile error - fixed
   std::cout << x1.a << "--" << x1.b << "--" << x1.c << "\n";
   std::cout << x2.a << "--" << x2.b << "--" << x2.c << "\n\n";
 
-  Y y1;
-  Y y2{};
+  Y y1;    // default ctor
+  Y y2{};  // default ctor
   std::cout << y1.a << "--" << y1.b << "--" << y1.c << "\n";
   std::cout << y2.a << "--" << y2.b << "--" << y2.c << "\n";
 

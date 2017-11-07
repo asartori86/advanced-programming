@@ -25,6 +25,6 @@ class Vector {
 
 int main() {
   Vector<double> v1{7};
-  // Vector<double> v2{v1};
+  // Vector<double> v2{v1}; // default copy ctor
   return 0;
 }
