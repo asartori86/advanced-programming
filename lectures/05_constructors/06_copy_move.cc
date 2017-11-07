@@ -159,7 +159,7 @@ int main() {
 
     std::cout << "\nv4 = v3 + v3 + v2 + v3; calls\n";
     v4 = v3 + v3 + v2 + v3;
-    std::cout << v4;
+    std::cout << "v4 = " << v4;
 
     std::cout << "\nLet's test our assert in operator+\n";
     std::cout << "Vector<int> a{5};\n"
