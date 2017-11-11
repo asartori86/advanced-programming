@@ -40,7 +40,7 @@ class List {
   void reset();
 
   // prune node storing the value v
-  void prune_node(const value_type; v);
+  void prune_node(const value_type& v);
 
   // implement suitable constructor(s) for List
 
