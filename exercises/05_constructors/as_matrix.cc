@@ -23,19 +23,21 @@ class Matrix {
   }
 
   Matrix& operator=(const Matrix& m) {
-    if (m.moved)
-      AP_error("better not to copy from an already moved matrix\n");
+    if (&m != this) {
+      if (m.moved)
+        AP_error("better not to copy from an already moved matrix\n");
 
-    if (moved) {
-      rows = m.rows;
-      cols = m.cols;
-      _size = m._size;
-      elem.reset(new num[_size]);
-      moved = false;
+      if (moved) {
+        rows = m.rows;
+        cols = m.cols;
+        _size = m._size;
+        elem.reset(new num[_size]);
+        moved = false;
+      }
+      // check sizes
+      for (int i = 0; i < _size; ++i)
+        elem[i] = m.elem[i];
     }
-    // check sizes
-    for (int i = 0; i < _size; ++i)
-      elem[i] = m.elem[i];
     return *this;
   }
 
@@ -137,6 +139,8 @@ int main() {
         m(i, j) = c++;
 
     md = m;
+
+    md = md;
 
     std::cout << md << std::endl;
 
