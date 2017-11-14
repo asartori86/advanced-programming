@@ -24,7 +24,6 @@ int main() {
 
     print_animal(s);
 
-
     return 0;
   } catch (std::runtime_error& e) {
     std::cerr << e.what() << std::endl;

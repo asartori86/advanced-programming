@@ -2,7 +2,7 @@
 #include <iostream>
 
 // void Dog::speak() const noexcept override{  don't repeat override
-void Dog::speak() const noexcept{
+void Dog::speak() const noexcept {
   std::cout << "Bau\n";
 }
 
