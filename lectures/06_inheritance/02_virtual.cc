@@ -13,14 +13,12 @@ struct Animal {
   Animal() : Animal{0, 0} {}  // delegating constructor
 
   virtual void speak() const noexcept { std::cout << "Unknown\n"; }
-  virtual void info() const noexcept;
+  virtual void info() const noexcept {
+    std::cout << "age:\t" << age << '\n' << "weight:\t" << weight << '\n';
+  }
 
   virtual ~Animal() {}
 };
-
-void Animal::info() const noexcept {
-  std::cout << "age:\t" << age << '\n' << "weight:\t" << weight << '\n';
-}
 
 struct Dog : public Animal {
   void speak() const noexcept override { std::cout << "Bau\n"; }

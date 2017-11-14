@@ -1,36 +1,35 @@
 #include <iostream>
 #include <ap_error.h>
 
+// each animal should implement
+// void info()
+// void speak()
+
 struct Animal {
   unsigned int age;
   double weight;
-
-  Animal(const unsigned int a, const double w) : age{a}, weight{w} {
-    if (weight < 0)
-      AP_error("invalid weight:", w);
-  }
-
-  Animal() : Animal{0, 0} {}  // delegating constructor
-
-  void speak() const noexcept { std::cout << "Unknown\n"; }
-  void info() const noexcept {
-    std::cout << "age:\t" << age << '\n' << "weight:\t" << weight << '\n';
+  void info() const {
+    std::cout << "age: " << age << std::endl
+              << "weight: " << weight << std::endl;
   }
 };
 
-struct Dog : public Animal {
+struct Dog {
+  Animal _animal;
   void speak() const noexcept { std::cout << "Bau\n"; }
-  Dog() = default;
-  Dog(const unsigned int a, const double d) : Animal{a, d} {}
+  void info() { _animal.info(); }
+  Dog() : _animal{} {}
+  Dog(const unsigned int a, const double d) : _animal{a, d} {}
 };
 
 struct Snake : public Animal {
+  Animal _animal;
   bool dangerous;
   Snake(const unsigned int a, const double w, const bool b)
-      : Animal{a, w}, dangerous{b} {}
-  Snake(const bool b) : Animal{}, dangerous{b} {}
+      : _animal{a, w}, dangerous{b} {}
+  Snake(const bool b) : _animal{}, dangerous{b} {}
   void info() const noexcept {
-    Animal::info();
+    _animal.info();
     std::cout << "dangerous:\t" << (dangerous ? "true" : "false") << std::endl;
   }
   void speak() const noexcept { std::cout << "ssss\n"; }
@@ -40,7 +39,8 @@ inline void newline() noexcept {
   std::cout << std::endl;
 }
 
-void print_animal(const Animal& a) noexcept {
+template <typename AT>
+void print_animal(const AT& a) noexcept {
   std::cout << "through ref\n";
   a.info();
   a.speak();
@@ -48,13 +48,6 @@ void print_animal(const Animal& a) noexcept {
 
 int main() {
   try {
-    Animal a{9, 9};
-    a.info();
-    a.speak();
-
-    // std::cout << std::endl;
-    newline();
-
     Dog d;
     d.info();
     d.speak();
@@ -73,7 +66,7 @@ int main() {
 
     newline();
 
-    Animal* p = new Snake{1, 2.3, false};
+    Snake* p = new Snake{1, 2.3, false};
     std::cout << "through pointer\n";
     p->info();
     p->speak();
