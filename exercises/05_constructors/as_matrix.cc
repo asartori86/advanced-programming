@@ -16,19 +16,51 @@ class Matrix {
 
   Matrix(const Matrix& m)
       : rows{m.rows}, cols{m.cols}, _size{m._size}, elem{new num[_size]} {
+    if (m.moved)
+      AP_error("cannot construct a Matrix from a moved one\n");
     for (int i = 0; i < _size; ++i)
       new (&elem[i]) num{m.elem[i]};
   }
 
   Matrix& operator=(const Matrix& m) {
-    // check sizes
-    for (int i = 0; i < _size; ++i)
-      elem[i] = m.elem[i];
+    if (&m != this) {
+      if (m.moved)
+        AP_error("better not to copy from an already moved matrix\n");
+
+      if (moved) {
+        rows = m.rows;
+        cols = m.cols;
+        _size = m._size;
+        elem.reset(new num[_size]);
+        moved = false;
+      }
+      // check sizes
+      for (int i = 0; i < _size; ++i)
+        elem[i] = m.elem[i];
+    }
     return *this;
   }
 
-  Matrix(Matrix&&) = default;
-  Matrix& operator=(Matrix&&) = default;
+  Matrix(Matrix&& m)
+      : rows{std::move(m.rows)},
+        cols{std::move(m.cols)},
+        _size{std::move(m._size)},
+        elem{std::move(m.elem)} {
+    m.moved = true;
+    m.rows = m.cols = m._size = 0;
+  }
+
+  Matrix& operator=(Matrix&& m) {
+    if (m.moved)
+      AP_error("better not to copy from an already moved matrix\n");
+    rows = std::move(m.rows);
+    cols = std::move(m.cols);
+    _size = std::move(m._size);
+    elem = std::move(m.elem);
+    m.moved = true;
+    m.rows = m.cols = m._size = 0;
+    return *this;
+  }
 
   num& at(const int i, const int j) {
     range_check(i, j);
@@ -70,6 +102,10 @@ class Matrix {
   int cols;
   int _size;
   std::unique_ptr<num[]> elem;
+
+  // this boolean is set to true when another Maxtrix calls a move
+  // ctor or assignment from this Matrix.
+  bool moved = false;
 };
 
 template <typename num>
@@ -104,7 +140,20 @@ int main() {
 
     md = m;
 
+    md = md;
+
     std::cout << md << std::endl;
+
+    Matrix<int> m2{std::move(m)};
+
+    std::cout << m2 << std::endl;
+
+    m = md;
+    std::cout << m << std::endl;
+
+    m = std::move(m2);
+    md = m2;  // an exception will be thrown
+
     return 0;
   } catch (std::runtime_error& e) {
     std::cerr << e.what() << std::endl;
