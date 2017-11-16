@@ -18,7 +18,7 @@ class Matrix {
   template <typename ET>
   Matrix(const MatrixExpression<ET>& e)
       : rows{e.row()}, cols{e.col()}, _size{rows * cols}, elem{new num[_size]} {
-    std::cout << "expr ctor\n";
+    // std::cout << "expr ctor\n";
     for (int i = 0; i < _size; ++i)
       elem[i] = e[i];
   }
