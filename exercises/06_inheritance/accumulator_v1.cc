@@ -24,17 +24,17 @@ class Matrix {
 
   Matrix(const Matrix& m)
       : rows{m.rows}, cols{m.cols}, _size{m._size}, elem{new num[_size]} {
-    // std::cout << "copy ctor\n";
-    // if (m.moved)
-    //   AP_error("cannot construct a Matrix from a moved one\n");
+    std::cout << "copy ctor\n";
+    if (m.moved)
+      AP_error("cannot construct a Matrix from a moved one\n");
     for (int i = 0; i < _size; ++i)
       new (&elem[i]) num{m.elem[i]};
   }
 
   Matrix& operator=(const Matrix& m) {
     if (&m != this) {
-      // if (m.moved)
-      //   AP_error("better not to copy from an already moved matrix\n");
+      if (m.moved)
+        AP_error("better not to copy from an already moved matrix\n");
 
       if (moved) {
         rows = m.rows;
@@ -55,7 +55,7 @@ class Matrix {
         cols{std::move(m.cols)},
         _size{std::move(m._size)},
         elem{std::move(m.elem)} {
-    // std::cout << "move ctor\n";
+    std::cout << "move ctor\n";
     m.moved = true;
     m.rows = m.cols = m._size = 0;
   }
