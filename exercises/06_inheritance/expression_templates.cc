@@ -15,7 +15,6 @@ struct MatrixExpression {
 template <typename num>
 class Matrix {
  public:
-
   template <typename ET>
   Matrix(const MatrixExpression<ET>& e)
       : rows{e.row()}, cols{e.col()}, _size{rows * cols}, elem{new num[_size]} {
@@ -33,7 +32,6 @@ class Matrix {
     return *this;
   }
 
-  
   Matrix& operator+=(const Matrix<num>& r) {
     // check size
     for (int i = 0; i < _size; ++i)
@@ -41,7 +39,6 @@ class Matrix {
     return *this;
   }
 
-  
   Matrix(const int r, const int c)
       : rows{r}, cols{c}, _size{r * c}, elem{new num[_size]} {}
 
@@ -49,7 +46,7 @@ class Matrix {
   const num& operator[](const int i) const noexcept { return elem[i]; }
 
   Matrix(const Matrix& m)
-    : rows{m.rows}, cols{m.cols}, _size{m._size}, elem{new num[_size]} {
+      : rows{m.rows}, cols{m.cols}, _size{m._size}, elem{new num[_size]} {
     std::cout << "copy ctor\n";
     if (m.moved)
       AP_error("cannot construct a Matrix from a moved one\n");
