@@ -8,20 +8,13 @@ struct MatrixExpression {
   auto operator[](const int i) const noexcept {
     return static_cast<const ET&>(*this)[i];
   }
-
   auto row() const noexcept { return static_cast<const ET&>(*this).row(); }
   auto col() const noexcept { return static_cast<const ET&>(*this).col(); }
 };
 
 template <typename num>
-class Matrix : MatrixExpression<Matrix<num>> {
+class Matrix {
  public:
-  Matrix& operator+=(const Matrix<num>& r) {
-    // check size
-    for (int i = 0; i < _size; ++i)
-      elem[i] += r[i];
-    return *this;
-  }
 
   template <typename ET>
   Matrix(const MatrixExpression<ET>& e)
@@ -31,6 +24,24 @@ class Matrix : MatrixExpression<Matrix<num>> {
       elem[i] = e[i];
   }
 
+  template <typename ET>
+  Matrix& operator=(const MatrixExpression<ET>& e) {
+    std::cout << "expr assignment\n";
+    // check sizes
+    for (int i = 0; i < _size; ++i)
+      elem[i] = e[i];
+    return *this;
+  }
+
+  
+  Matrix& operator+=(const Matrix<num>& r) {
+    // check size
+    for (int i = 0; i < _size; ++i)
+      elem[i] += r[i];
+    return *this;
+  }
+
+  
   Matrix(const int r, const int c)
       : rows{r}, cols{c}, _size{r * c}, elem{new num[_size]} {}
 
@@ -38,7 +49,7 @@ class Matrix : MatrixExpression<Matrix<num>> {
   const num& operator[](const int i) const noexcept { return elem[i]; }
 
   Matrix(const Matrix& m)
-      : rows{m.rows}, cols{m.cols}, _size{m._size}, elem{new num[_size]} {
+    : rows{m.rows}, cols{m.cols}, _size{m._size}, elem{new num[_size]} {
     std::cout << "copy ctor\n";
     if (m.moved)
       AP_error("cannot construct a Matrix from a moved one\n");
@@ -144,12 +155,13 @@ int main() {
     Matrix<double> m7(N, 10000);
     Matrix<double> m8(N, 10000);
     Matrix<double> m9(N, 10000);
+    // Matrix<double> rh(N, 10000);
 
     // const auto mm = m1 + m1 + m1 + m1 + m1 + m1 + m1 + m1 + m1;
     auto t1 = std::chrono::high_resolution_clock::now();
-    Matrix<double> rh{m0 + m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9};
+    // rh = m0 + m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9;
     // Matrix<double> rh {m0 + m0 + m0 + m0 + m0 + m0 + m0 + m0 + m0 + m0};
-
+    Matrix<double> rh{m0 + m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9};
     auto t2 = std::chrono::high_resolution_clock::now();
 
     auto t_f = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
