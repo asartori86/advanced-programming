@@ -10,12 +10,13 @@ addons:
       - g++-6
       - clang-3.8
 
-compiler:
-  - g++-6
-  - clang++-3.8
+# compiler:
+#   - g++-6
+#   - clang++-3.8
+
+env:
+  - COMPILER=g++-6
+  - COMPILER=clang++-3.8
 
 script:
-  - c++ --version
-  - $CXX --version
-  - g++ --version
-  # - make CXX=$CXX
+  - make CXX=$COMPILER
