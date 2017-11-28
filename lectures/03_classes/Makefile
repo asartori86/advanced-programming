@@ -9,7 +9,6 @@ EXE = $(SRC:.cc=.x)
 all: $(EXE)
 
 %.x: %.cc
-	$(CXX) --version
 	$(CXX) $< -o $@ $(CXXFLAGS)
 
 08_template_class_c++14.x: 08_template_class_c++14.cc
