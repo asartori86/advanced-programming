@@ -1,20 +1,32 @@
 # Simple Makefile to compile all the sample codes provided during the
 # course of Advanced Programming
 
-FNAMES = 01_intro 02_arrays 03_classes 04_error_handling 05_constructors \
-	06_inheritance
-FOLDERS = $(addprefix lectures/, $(FNAMES))
-
-
 all:
-	@for i in $(FOLDERS);do cd $$i; make; cd -; done
+	+$(MAKE) $@ -C lectures/01_intro
+	+$(MAKE) $@ -C lectures/02_arrays
+	+$(MAKE) $@ -C lectures/03_classes
+	+$(MAKE) $@ -C lectures/04_error_handling
+	+$(MAKE) $@ -C lectures/05_constructors
+	+$(MAKE) $@ -C lectures/06_inheritance
+	+$(MAKE) $@ -C lectures/07_iterators
 
 clean: 
-	@for i in $(FOLDERS);do cd $$i; make clean; cd -; done
+	+$(MAKE) $@ -C lectures/01_intro
+	+$(MAKE) $@ -C lectures/02_arrays
+	+$(MAKE) $@ -C lectures/03_classes
+	+$(MAKE) $@ -C lectures/04_error_handling
+	+$(MAKE) $@ -C lectures/05_constructors
+	+$(MAKE) $@ -C lectures/06_inheritance
+	+$(MAKE) $@ -C lectures/07_iterators
 	@find . -type f -name '*~' -exec rm '{}' \;
 
 format: 
-	@for i in $(FOLDERS);do cd $$i; make format; cd -; done 
+	+$(MAKE) $@ -C lectures/01_intro
+	+$(MAKE) $@ -C lectures/02_arrays
+	+$(MAKE) $@ -C lectures/03_classes
+	+$(MAKE) $@ -C lectures/04_error_handling
+	+$(MAKE) $@ -C lectures/05_constructors
+	+$(MAKE) $@ -C lectures/06_inheritance
+	+$(MAKE) $@ -C lectures/07_iterators
 
 .PHONY: all clean format
-
