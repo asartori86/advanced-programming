@@ -4,6 +4,7 @@
 #include <iterator>  // need to derive from std::iterator
 #include <algorithm>
 #include <numeric>
+#include <vector>
 
 enum class IM { push_back, push_front };
 
@@ -136,10 +137,15 @@ void List<T>::print() const {
     std::cout << *it << std::endl;
 }
 
+template <typename num>
+struct my_comparison {
+  bool operator()(const num& a, const num& b) { return a > b; }
+};
+
 int main() {
   List<double> list{};
   list.insert(1.1);
-  list.insert(2.2);
+  list.insert(2.2, IM::push_back);
   list.insert(3.3);
   list.print();
 
@@ -167,6 +173,13 @@ int main() {
     std::cout << "found " << *it << std::endl;
   } else
     std::cout << "not found\n";
+
+  std::vector<double> v(3);
+
+  std::copy(first, last, v.begin());
+  std::sort(v.begin(), v.end(), my_comparison<double>{});
+  for (const auto& x : v)
+    std::cout << x << std::endl;
 
   return 0;
 }
