@@ -1,7 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <algorithm>
-#include <iterator> // need to derive from std::iterator
+#include <iterator>  // need to derive from std::iterator
 #include <algorithm>
 #include <numeric>
 
@@ -41,13 +41,13 @@ class List {
   class ConstIterator;
   ConstIterator begin() const { return ConstIterator{head.get()}; }
   ConstIterator end() const { return ConstIterator{nullptr}; }
-  
+
   ConstIterator cbegin() const { return ConstIterator{head.get()}; }
   ConstIterator cend() const { return ConstIterator{nullptr}; }
 };
 
 template <typename T>
-class List<T>::Iterator : public std::iterator<std::forward_iterator_tag,T> {
+class List<T>::Iterator : public std::iterator<std::forward_iterator_tag, T> {
   using Node = List<T>::Node;
   Node* current;
 
@@ -73,10 +73,7 @@ class List<T>::Iterator : public std::iterator<std::forward_iterator_tag,T> {
   }
 
   bool operator!=(const Iterator& other) { return !(*this == other); }
-
 };
-
-
 
 template <typename T>
 class List<T>::ConstIterator : public List<T>::Iterator {
@@ -148,24 +145,27 @@ int main() {
 
   auto first = list.cbegin();
   auto last = list.cend();
-  
+
   double sum{0.0};
 
   sum = std::accumulate(first, last, sum);
 
+  auto my_f = [](const decltype(*first)& a,
+                 const decltype(*first)& b) -> decltype(a + b) {
+    double res = 0;
+    (b == 2.2 ? res = a : res = a + b);
+    return res;
+  };
 
-  auto my_f = [](const decltype(*first)& a, const decltype(*first) &b) -> decltype(a+b) { double res =0; (b==2.2 ? res = a : res= a+b); return res; };
+  sum = std::accumulate(first, last, 0.0, my_f);
 
-  sum = std::accumulate(first,last,0.0,my_f);
-  
   std::cout << "sum is " << sum << std::endl;
-  
+
   auto it = std::find(first, last, 2.2);
 
-  if(it != last){
+  if (it != last) {
     std::cout << "found " << *it << std::endl;
-  }
-  else
+  } else
     std::cout << "not found\n";
 
   return 0;
