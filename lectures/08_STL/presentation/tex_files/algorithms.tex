@@ -79,7 +79,7 @@ int main(){
 #include <vector>
 
 double my_f(const double& a, const double& b){
- if(b == 2.2)
+ if(std::abs(b - 2.2) < 1e-12)
   return a;
  return a+b;
 }
@@ -112,7 +112,7 @@ int main(){
  ...
  auto my_f = [](const double& a, const double &b) -> double {
    double res = 0;
-   (b==2.2 ? res = a : res= a+b);
+   ((std::abs(b-2.2) < 1e-12) ? res = a : res= a+b);
    return res;
  };
  double sum{0};

@@ -139,7 +139,7 @@ void List<T>::print() const {
 
 template <typename num>
 struct my_comparison {
-  bool operator()(const num& a, const num& b) { return a > b; }
+  bool operator()(const num& a, const num& b) { return a < b; }
 };
 
 int main() {
