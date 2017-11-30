@@ -46,3 +46,30 @@ int main(){
 }
 \end{lstlisting}
 \end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{My comparison}
+  \lstset{language=C++,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    commentstyle=\color{green}\ttfamily,
+    morecomment=[l][\color{magenta}]{\#}
+  }
+\begin{lstlisting}
+#include <algorithm>
+#include <vector>
+  
+template <typename num>
+struct my_comparison{
+  bool operator()(const num& a, const num& b) { return a > b;}
+};
+  
+int main(){
+  std::vector<double> v1;
+  ...
+  std::sort(v1.begin(), v1.end(),
+            my_comparison<double>{});
+}
+\end{lstlisting}
+\end{frame}
