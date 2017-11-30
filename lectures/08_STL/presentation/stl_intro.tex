@@ -31,6 +31,7 @@ tabsize=4,
 showstringspaces=false,
 numbers=none,
 numberstyle=\tiny,
+breaklines=true,
 firstnumber=1}
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata}
@@ -90,13 +91,15 @@ firstnumber=1}
   \frametitle{Outline}
   \tableofcontents[hideallsubsections]
 \end{frame}
-		
+\input{tex_files/intro.tex}
 \input{tex_files/iterators.tex}
 \input{tex_files/containers.tex}
 \input{tex_files/algorithms.tex}
+\input{tex_files/function_objects.tex}
 \section*{}
 \begin{frame}
-	\frametitle{Thank you for your kind attention!}
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/stroustrup.jpg}
 \end{frame}
 			
 \defbeamertemplate*{footline}{for appendix}
