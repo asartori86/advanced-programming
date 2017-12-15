@@ -194,16 +194,18 @@ def which_prime_divisors(int_val):
     ret = None
     ########################
     # code here
-    ret = which_divisors(int_val)
-    for i in ret:
-        if not is_prime(i):
-            ret.remove(i)
+    _ret = which_divisors(int_val)
+    for i,_r in enumerate(_ret):
+        if not is_prime(_r):
+            _ret[i]=None
+    ret = [_r for _r in _ret if _r]
     ########################
     assert ret is not None, fname+' is not defined'
     assert type(ret) is type([]), fname+' should return a list'
-    if int_val == 6: assert ret == [2,3], 'failed 3'
-    if int_val is 10: ret == [2,5], 'failed 10'
-    if int_val is 13: ret == [], 'failed 13'
+    if int_val == 6: assert ret == [2,3], 'failed 6'
+    if int_val is 10: assert ret == [2,5], 'failed 10'
+    if int_val is 13: assert ret == [], 'failed 13'
+    if int_val is 18: assert ret == [2,3], 'failed 18'
     return ret
 
 
@@ -244,6 +246,7 @@ if __name__ == "__main__":
             "which_prime_divisors(6)",\
             "which_prime_divisors(10)",\
             "which_prime_divisors(13)",\
+            "which_prime_divisors(18)",\
           ]
     for t in tests:
         try:
