@@ -1,2 +1,15 @@
-bucket*
-*as_src*
+.gitignore
+# temp file
+*.swp
+# jupyter save points
+.ipynb_checkpoints
+# not shared solutions or lectures 
+.*
+exam*
+.*.py 
+.*.ipynb
+# draft of the syllabus
+.README.md
+# modules bytecode
+__pycache__
+*pyc
