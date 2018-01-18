@@ -13,7 +13,7 @@ In each repository we expect to see two folders `c++` and `python` containing th
 
 ## Deadline
 
-The assignments are due to February 2, 2018 11.59 PM.
+The assignments are due to March 1, 2018 11.59 PM.
 
 
 ## C++ part
