@@ -6,4 +6,5 @@ bucket*
 .*
 __pycache__
 *pyc
+*.ini
 
