@@ -55,11 +55,10 @@ class Test(unittest.TestCase):
         [p.readFile(f) for f,p in zip(self._files,self._PstLst)]
 
     def test_missing_attributes(self): 
-        attributes_to_define = ['populatePostcards',\
-                                '_file','_postcards','_from','_to',\
+        attributes_to_define = ['_file','_postcards','_date','_from','_to',\
                                 'writeFile','readFile','parsePostcards',\
                                 'updateFile','updateLists',\
-                                'getNumberOfPostacards',\
+                                'getNumberOfPostcards',\
                                 'getPostcardsByDateRange',\
                                 'getPostcardsBySender',\
                                 'getPostcardsByReceiver']
